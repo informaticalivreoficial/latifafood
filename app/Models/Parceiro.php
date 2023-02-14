@@ -29,7 +29,7 @@ class Parceiro extends Model
 
     /**
      * Scopes
-     */
+    */
     public function scopeAvailable($query)
     {
         return $query->where('status', 1);
@@ -47,12 +47,12 @@ class Parceiro extends Model
 
     /**
      * Relacionamentos
-     */
+    */
 
 
-     /**
+    /**
      * Accerssors and Mutators
-     */
+    */
 	 
 	public function metaimg()
     {

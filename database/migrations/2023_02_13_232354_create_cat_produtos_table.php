@@ -18,6 +18,7 @@ class CreateCatProdutosTable extends Migration
             $table->uuid('uuid');
             $table->string('titulo');
             $table->string('slug');
+            $table->integer('status')->default(1);
             $table->text('descricao');
             $table->timestamps();
         });
