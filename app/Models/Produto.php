@@ -24,7 +24,7 @@ class Produto extends Model
     ];
 
     /**
-     * Scopes
+     * Scopes 
     */
     public function scopeAvailable($query)
     {
