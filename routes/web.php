@@ -199,12 +199,14 @@ Route::prefix('admin')->middleware('auth')->group( function(){
     Route::get('/menus', [MenuController::class, 'index'])->name('menus.index');
 
     //****************************** Cardápio *******************************************/
-    Route::post('cardapio/categorias', [CategoriaProdutoController::class, 'categorias'])->name('cardapio.categorias');
+    Route::get('cardapio/categorias', [CategoriaProdutoController::class, 'categorias'])->name('cardapio.categorias');
     Route::get('cardapio/categorias/create', [CategoriaProdutoController::class, 'create'])->name('cardapio.categorias.create');
     Route::post('cardapio/categorias/store', [CategoriaProdutoController::class, 'store'])->name('cardapio.categorias.store');
     Route::put('cardapio/categorias/{id}', [CategoriaProdutoController::class, 'update'])->name('cardapio.categorias.update');
     Route::get('cardapio/categorias/{id}/edit', [CategoriaProdutoController::class, 'edit'])->name('cardapio.categorias.edit');
     Route::get('cardapio/categorias/set-status', [CategoriaProdutoController::class, 'setStatus'])->name('cardapio.categorias.setStatus');
+    Route::delete('cardapio/categorias/deleteon', [CategoriaProdutoController::class, 'deleteon'])->name('cardapio.categorias.deleteon');
+    Route::get('cardapio/categorias/delete', [CategoriaProdutoController::class, 'delete'])->name('cardapio.categorias.delete');
     Route::get('cardapio/set-status', [CardapioController::class, 'setStatus'])->name('cardapio.setStatus');
     Route::delete('cardapio/deleteon', [CardapioController::class, 'deleteon'])->name('cardapio.deleteon');
     Route::get('cardapio/delete', [CardapioController::class, 'delete'])->name('cardapio.delete');
