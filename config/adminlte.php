@@ -248,16 +248,16 @@ return [
             'icon' => 'fas fa-bars',
         ],
         [
-            'text' => 'Produtos',            
+            'text' => 'Cardápio',            
             'icon' => 'fas fa-store',
             'submenu' => [
                 [
                     'text' => 'Listar Produtos',
-                    'url'  => 'admin/pedidos',
+                    'url'  => 'admin/cardapio',
                 ],
                 [
                     'text' => 'Categorias',
-                    'url'  => 'admin/pedidos/categorias',
+                    'url'  => 'admin/cardapio/categorias',
                 ]
             ]
         ],

@@ -4,19 +4,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
     AdminController,
-    ApartamentoController,
-    AvaliacaoController,
+    CategoriaProdutoController,
     UserController,
     EmailController,
     PostController,
     CatPostController,
     ConfigController,
-    EmpresaController,
-    GaleriaController,
     MenuController,
     NewsletterController,
     ParceiroController,
-    ReservaController,
+    ProdutoController,
     SitemapController,
     SlideController,
     WhatsappController
@@ -190,29 +187,7 @@ Route::prefix('admin')->middleware('auth')->group( function(){
     Route::get('usuarios/create', [UserController::class, 'create'])->name('users.create');
     Route::post('usuarios/store', [UserController::class, 'store'])->name('users.store');
     Route::get('usuarios', [UserController::class, 'index'])->name('users.index');
-
-    /** Avaliações */
-    Route::get('avaliacoes/set-status', [AvaliacaoController::class, 'avaliacoesSetStatus'])->name('avaliacoes.avaliacoesSetStatus');
-    Route::match(['post', 'get'], 'avaliacoes/fetchCity', [AvaliacaoController::class, 'fetchCity'])->name('avaliacoes.fetchCity');
-    Route::get('avaliacoes/delete', [AvaliacaoController::class, 'delete'])->name('avaliacoes.delete');
-    Route::delete('avaliacoes/deleteon', [AvaliacaoController::class, 'deleteon'])->name('avaliacoes.deleteon');
-    Route::put('avaliacoes/{id}', [AvaliacaoController::class, 'update'])->name('avaliacoes.update');
-    Route::get('avaliacoes/{id}/edit', [AvaliacaoController::class, 'edit'])->name('avaliacoes.edit');
-    Route::get('avaliacoes/create', [AvaliacaoController::class, 'create'])->name('avaliacoes.create');
-    Route::post('avaliacoes/store', [AvaliacaoController::class, 'store'])->name('avaliacoes.store');
-    Route::get('avaliacoes', [AvaliacaoController::class, 'index'])->name('avaliacoes.index');
-
-    //****************************** Empresas *******************************************/
-    Route::match(['post', 'get'], 'empresas/fetchCity', [EmpresaController::class, 'fetchCity'])->name('empresas.fetchCity');
-    Route::get('empresas/set-status', [EmpresaController::class, 'empresaSetStatus'])->name('empresas.empresaSetStatus');
-    Route::delete('empresas/deleteon', [EmpresaController::class, 'deleteon'])->name('empresas.deleteon');
-    Route::get('empresas/delete', [EmpresaController::class, 'delete'])->name('empresas.delete');
-    Route::put('empresas/{id}', [EmpresaController::class, 'update'])->name('empresas.update');
-    Route::get('empresas/{id}/edit', [EmpresaController::class, 'edit'])->name('empresas.edit');
-    Route::get('empresas/create', [EmpresaController::class, 'create'])->name('empresas.create');
-    Route::post('empresas/store', [EmpresaController::class, 'store'])->name('empresas.store');
-    Route::get('/empresas', [EmpresaController::class, 'index'])->name('empresas.index');
-
+   
     //****************************** Menu *******************************************/
     Route::get('menus/set-status', [MenuController::class, 'menuSetStatus'])->name('menus.menuSetStatus');
     Route::delete('menus/deleteon', [MenuController::class, 'deleteon'])->name('menus.deleteon');
@@ -223,39 +198,21 @@ Route::prefix('admin')->middleware('auth')->group( function(){
     Route::post('menus/store', [MenuController::class, 'store'])->name('menus.store');
     Route::get('/menus', [MenuController::class, 'index'])->name('menus.index');
 
-    //****************************** Galerias *******************************************/
-    Route::get('galerias/set-status', [GaleriaController::class, 'galeriaSetStatus'])->name('galerias.galeriaSetStatus');
-    Route::delete('galerias/deleteon', [GaleriaController::class, 'deleteon'])->name('galerias.deleteon');
-    Route::post('galerias/image-set-cover', [GaleriaController::class, 'imageSetCover'])->name('galerias.imageSetCover');
-    Route::delete('galerias/image-remove', [GaleriaController::class, 'imageRemove'])->name('galerias.imageRemove');
-    Route::get('galerias/delete', [GaleriaController::class, 'delete'])->name('galerias.delete');
-    Route::put('galerias/{id}', [GaleriaController::class, 'update'])->name('galerias.update');
-    Route::get('galerias/{id}/edit', [GaleriaController::class, 'edit'])->name('galerias.edit');
-    Route::get('galerias/create', [GaleriaController::class, 'create'])->name('galerias.create');
-    Route::post('galerias/store', [GaleriaController::class, 'store'])->name('galerias.store');
-    Route::get('/galerias', [GaleriaController::class, 'index'])->name('galerias.index');
-
-    /** Reservas */
-    Route::get('reservas/delete', [ReservaController::class, 'delete'])->name('reservas.delete');
-    Route::delete('reservas/deleteon', [ReservaController::class, 'deleteon'])->name('reservas.deleteon');
-    Route::put('reservas/{id}', [ReservaController::class, 'update'])->name('reservas.update');
-    Route::get('reservas/{id}/edit', [ReservaController::class, 'edit'])->name('reservas.edit');
-    Route::get('reservas/create', [ReservaController::class, 'create'])->name('reservas.create');
-    Route::get('reservas-pendentes', [ReservaController::class, 'pendentes'])->name('reservas.pendentes');
-    Route::get('reservas-finalizadas', [ReservaController::class, 'finalizadas'])->name('reservas.finalizadas');
-
-    /** Apartamentos */
-    Route::get('apartamentos/marcadagua', [ApartamentoController::class, 'imageWatermark'])->name('apartamentos.marcadagua');
-    Route::get('apartamentos/delete', [ApartamentoController::class, 'delete'])->name('apartamentos.delete');
-    Route::delete('apartamentos/deleteon', [ApartamentoController::class, 'deleteon'])->name('apartamentos.deleteon');
-    Route::post('apartamentos/image-set-cover', [ApartamentoController::class, 'imageSetCover'])->name('apartamentos.imageSetCover');
-    Route::get('apartamentos/set-status', [ApartamentoController::class, 'apartamentoSetStatus'])->name('apartamentos.SetStatus');
-    Route::delete('apartamentos/image-remove', [ApartamentoController::class, 'imageRemove'])->name('apartamentos.imageRemove');
-    Route::put('apartamentos/{id}', [ApartamentoController::class, 'update'])->name('apartamentos.update');
-    Route::get('apartamentos/{id}/edit', [ApartamentoController::class, 'edit'])->name('apartamentos.edit');
-    Route::get('apartamentos/create', [ApartamentoController::class, 'create'])->name('apartamentos.create');
-    Route::post('apartamentos/store', [ApartamentoController::class, 'store'])->name('apartamentos.store');
-    Route::get('apartamentos', [ApartamentoController::class, 'index'])->name('apartamentos.index');
+    //****************************** Cardápio *******************************************/
+    Route::post('cardapio/categorias', [CategoriaProdutoController::class, 'categorias'])->name('cardapio.categorias');
+    Route::get('cardapio/categorias/create', [CategoriaProdutoController::class, 'create'])->name('cardapio.categorias.create');
+    Route::post('cardapio/categorias/store', [CategoriaProdutoController::class, 'store'])->name('cardapio.categorias.store');
+    Route::put('cardapio/categorias/{id}', [CategoriaProdutoController::class, 'update'])->name('cardapio.categorias.update');
+    Route::get('cardapio/categorias/{id}/edit', [CategoriaProdutoController::class, 'edit'])->name('cardapio.categorias.edit');
+    Route::get('cardapio/categorias/set-status', [CategoriaProdutoController::class, 'setStatus'])->name('cardapio.categorias.setStatus');
+    Route::get('cardapio/set-status', [CardapioController::class, 'setStatus'])->name('cardapio.setStatus');
+    Route::delete('cardapio/deleteon', [CardapioController::class, 'deleteon'])->name('cardapio.deleteon');
+    Route::get('cardapio/delete', [CardapioController::class, 'delete'])->name('cardapio.delete');
+    Route::put('cardapio/{id}', [CardapioController::class, 'update'])->name('cardapio.update');
+    Route::get('cardapio/{id}/edit', [CardapioController::class, 'edit'])->name('cardapio.edit');
+    Route::get('cardapio/create', [CardapioController::class, 'create'])->name('cardapio.create');
+    Route::post('cardapio/store', [CardapioController::class, 'store'])->name('cardapio.store');
+    Route::get('/cardapio', [ProdutoController::class, 'index'])->name('cardapio.index');
 
     //******************** Sitemap *********************************************/
     Route::get('gerarxml', [SitemapController::class, 'gerarxml'])->name('gerarxml');
