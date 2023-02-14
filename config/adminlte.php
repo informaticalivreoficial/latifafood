@@ -248,30 +248,16 @@ return [
             'icon' => 'fas fa-bars',
         ],
         [
-            'text' => 'Apartamentos',            
-            'icon' => 'fas fa-building',
-            'submenu' => [
-                [
-                    'text' => 'Listar Todos',
-                    'url'  => 'admin/apartamentos',
-                ],
-                [
-                    'text' => 'Criar Novo',
-                    'url'  => 'admin/apartamentos/create',
-                ]
-            ]
-        ],
-        [
-            'text' => 'Reservas',            
+            'text' => 'Produtos',            
             'icon' => 'fas fa-store',
             'submenu' => [
                 [
-                    'text' => 'Pendentes',
-                    'url'  => 'admin/reservas-pendentes',
+                    'text' => 'Listar Produtos',
+                    'url'  => 'admin/pedidos',
                 ],
                 [
-                    'text' => 'Finalizadas',
-                    'url'  => 'admin/reservas-finalizadas',
+                    'text' => 'Categorias',
+                    'url'  => 'admin/pedidos/categorias',
                 ]
             ]
         ],
@@ -319,21 +305,11 @@ return [
                     'url'  => 'admin/posts/categorias',
                 ]
             ]
-        ],
-        [
-            'text' => 'Avaliações',
-            'url'  => 'admin/avaliacoes',
-            'icon' => 'fas fa-bullhorn',
         ], 
         [
             'text' => 'Banner Slides',
             'url'  => 'admin/slides',
             'icon' => 'fas fa-film',
-        ],
-        [
-            'text' => 'Galerias',
-            'url'  => 'admin/galerias',
-            'icon' => 'fas fa-images',
         ],
         [
             'text' => 'Email',            
